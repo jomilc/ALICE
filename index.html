@@ -397,7 +397,8 @@
     -->
     <audio id="bgMusic" loop preload="auto" muted autoplay>
         <!-- Utiliza a versão MP3 convertida da música para melhor compatibilidade -->
-        <source src="kids_music_converted.mp3" type="audio/mpeg">
+        <!-- Substitui a trilha anterior pela nova música infantil -->
+        <source src="kids-song.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
     <button id="musicToggle" class="music-toggle" aria-label="Tocar/Pausar Música">🎵</button>
@@ -447,6 +448,23 @@
             <h3>📍 Onde será?</h3>
             <p><strong>Local:</strong> Clube Paulista</p>
             <p><strong>Endereço:</strong> R. Gualaxo, 285 - Aclimação</p>
+        </div>
+
+        <!-- Mapa do Google com localização e link de direções -->
+        <div class="map-section" style="margin: 30px 0;">
+            <h3>📍 Localização</h3>
+            <iframe
+                src="https://www.google.com/maps?q=Rua+Gualaxo+285,+Aclimacao,+Sao+Paulo&output=embed"
+                width="100%"
+                height="300"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <p style="margin-top: 10px;">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+Gualaxo+285%2CAclimacao%2CSao+Paulo" target="_blank" rel="noopener">Obter direções</a>
+            </p>
         </div>
 
         <div class="activity-box">
