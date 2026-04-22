@@ -15,7 +15,12 @@
     }
     body {
       font-family: 'Quicksand', sans-serif;
-      background: #fce4ec;
+      /* Apply polka dot background from the original design */
+      background-color: #fce4ec;
+      background-image: radial-gradient(#fff 10%, transparent 10%), radial-gradient(#fff 10%, transparent 10%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      overflow-x: hidden;
       color: #333;
       line-height: 1.6;
     }
@@ -37,25 +42,125 @@
     .hero {
       position: relative;
       text-align: center;
-      padding: 2rem 0 4rem;
-      background: url('hero.png') no-repeat center/cover;
+      /* increase top padding and add margin-top to prevent the image from being clipped by the browser chrome */
+      padding: 4rem 0;
+      /* Increase margin-top to prevent the hero image from being cut off by the browser chrome */
+      margin-top: 6rem;
+      /* remove background image: the invitation image will be inserted separately */
       color: #fff;
     }
-    .hero h1 {
-      font-size: 2.5rem;
+    /* Remove old hero text styles since we will place content in a separate card */
+
+    /* Intro card styling */
+    .intro-card {
+      background: #ffffff;
+      border: 3px solid #f48fb1;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .intro-card .invitation-subtitle {
+      font-size: 1.2rem;
+      color: #7b1fa2;
       margin-bottom: 0.5rem;
     }
-    .hero h2 {
-      font-size: 1.5rem;
+    .intro-card h1 {
+      font-size: 2.2rem;
+      color: #ab47bc;
+      margin: 0.5rem 0;
+    }
+    .intro-card .tagline {
+      font-size: 1.4rem;
+      color: #ec407a;
+      margin-top: 0.5rem;
+    }
+
+    /* Countdown card styling */
+    .countdown-card {
+      background: linear-gradient(135deg, #f48fb1, #ba68c8);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      color: #ffffff;
+      text-align: center;
+    }
+    .countdown-card h3 {
+      font-size: 1.6rem;
       margin-bottom: 1rem;
     }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+    .countdown-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
     }
-    .countdown {
-      font-size: 1.5rem;
+    .countdown-box {
+      background: #ffffff;
+      color: #d81b60;
+      border-radius: 16px;
+      flex: 1 1 calc(50% - 1rem);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .countdown-box span {
+      display: block;
+      font-size: 2rem;
       font-weight: bold;
+    }
+    .countdown-box small {
+      font-size: 1rem;
+      color: #7b1fa2;
+    }
+    .prep-message {
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+
+    /* Date card styling */
+    .date-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Invitation image at top of page */
+    .invitation-image {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin: 1rem 0;
+      display: block;
+    }
+
+    /* Floating cats and icons */
+    .floating-cat {
+      position: fixed;
+      z-index: -1;
+      opacity: 0.5;
+      pointer-events: none;
+      animation: float 6s infinite ease-in-out;
+      font-size: 40px;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(15deg); }
+    }
+    .cat1 { top: 15%; left: 5%; }
+    .cat2 { top: 65%; right: 5%; }
+    .cat3 { bottom: 15%; left: 8%; }
+    .date-card h3 {
+      font-size: 1.5rem;
+      color: #7b1fa2;
+      margin-bottom: 1rem;
+    }
+    .date-card p {
+      font-size: 1.2rem;
+      margin: 0.25rem 0;
     }
     /* Audio toggle */
     .music-toggle {
@@ -166,15 +271,53 @@
     <source src="O_Jogo_da_Alice.mp3.mpeg" type="audio/mpeg">
   </audio>
   <button id="musicToggle" class="music-toggle" title="Tocar música">🎵</button>
+
+  <!-- Floating cats and decorations for dynamic background -->
+  <div class="floating-cat cat1">🐱</div>
+  <div class="floating-cat cat2">😺</div>
+  <div class="floating-cat cat3">😸</div>
+  <div class="floating-cat" style="top: 40%; right: 12%; animation-delay: 1s;">✨</div>
+  <div class="floating-cat" style="top: 85%; right: 18%; animation-delay: 2s;">🎈</div>
   <div class="hero">
-    <div class="container">
-      <h1>Alice e família convidam você para a</h1>
-      <h2>CASA MÁGICA DA ALICE</h2>
-      <p>✨ 5 ANOS DE PURA MAGIA ✨</p>
-      <div class="countdown" id="countdown"></div>
-    </div>
+    <!-- Invitation image at top of page -->
+    <img src="invitation.png" alt="Convite" class="invitation-image">
   </div>
   <div class="container">
+    <!-- Intro card with invitation text -->
+    <div class="intro-card">
+      <p class="invitation-subtitle">Alice e família convidam você para</p>
+      <h1>A CASA MÁGICA DA ALICE</h1>
+      <p class="tagline">✨ 5 ANOS DE PURA MAGIA ✨</p>
+    </div>
+    <!-- Countdown section -->
+    <div class="countdown-card">
+      <h3>⏰ Faltam apenas...</h3>
+      <div class="countdown-grid">
+        <div class="countdown-box">
+          <span id="days">0</span>
+          <small>DIAS</small>
+        </div>
+        <div class="countdown-box">
+          <span id="hours">0</span>
+          <small>HORAS</small>
+        </div>
+        <div class="countdown-box">
+          <span id="minutes">0</span>
+          <small>MINUTOS</small>
+        </div>
+        <div class="countdown-box">
+          <span id="seconds">0</span>
+          <small>SEGUNDOS</small>
+        </div>
+      </div>
+      <p class="prep-message">🎉 Prepare-se para a mágica! 🐾</p>
+    </div>
+    <!-- Date card -->
+    <div class="date-card">
+      <h3>📅 Quando será?</h3>
+      <p><strong>Data:</strong> 30 de Maio de 2026</p>
+      <p><strong>Horário:</strong> 13h às 18h</p>
+    </div>
     <!-- Localização -->
     <div class="info-card">
       <h3>📍 Onde será?</h3>
@@ -207,14 +350,21 @@
       const now = new Date();
       const diff = eventDate - now;
       if (diff <= 0) {
-        document.getElementById('countdown').textContent = 'Já começou!';
+        // Event started: display zeroes
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
         return;
       }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
-      document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
       requestAnimationFrame(updateCountdown);
     }
     updateCountdown();
